@@ -6,6 +6,7 @@ import {
     CircleUser,
     BedSingle
 } from "lucide-react";
+import {NavLink} from "react-router-dom";
 export default function Navbar(){
     const [isopen,setOpen] = useState(false);
     const tooglesidebar = () => setOpen(!isopen);
@@ -15,7 +16,7 @@ export default function Navbar(){
                 <div className="border border-4 p-2 pr-3 pb-3 rounded-xl">
                     <Button
                     onClick={tooglesidebar}
-                    className="text-2xl font-bold focus:outline-none px-2"
+                    className="text-2xl text-black font-bold focus:outline-none px-2"
                     >
                     {isopen ? "✕" : "☰"}
                     </Button>
@@ -24,10 +25,34 @@ export default function Navbar(){
             <div className={`fixed top-0 left-0 h-full w-50 pt-20 z-40 bg-main border-r-3 transform transition-transform duration-300 ease-in-out ${isopen?"translate-x-0":"-translate-x-full"}`}>
                 <div className="pt-10">
                     <ul className="space-y-5 text-md">
-                        <a className="flex items-center p-4 border-3" href="#"><House className="mr-2"/>Beranda</a>
-                        <a className="flex items-center p-4 border-3" href="#"><BookOpenText className="mr-2"/>Riwayat Absen</a>
-                        <a className="flex items-center p-4 border-3" href="#"><CircleUser className="mr-2"/>Profile</a>
-                        <a className="flex items-center p-4 border-3" href="#"><BedSingle className="mr-2"/>Izin</a>
+                        <NavLink
+                        to="/" 
+                        className={({isActive})=>
+                           `flex items-center p-4 ${isActive?"border-b-3 border-t-3 bg-main-foreground":""}`
+                        }
+                        onClick={tooglesidebar}
+                        ><House className="mr-2"/>Beranda</NavLink>
+                        <NavLink
+                        to="/riwayatabsen" 
+                        className={({isActive})=>
+                           `flex items-center p-4 ${isActive?"border-b-3 border-t-3 bg-main-foreground":""}`
+                        }
+                        onClick={tooglesidebar}
+                        ><BookOpenText className="mr-2"/>Riwayat Absen</NavLink>
+                        <NavLink
+                        to="/profile" 
+                        className={({isActive})=>
+                           `flex items-center p-4 ${isActive?"border-b-3 border-t-3 bg-main-foreground":""}`
+                        }
+                        onClick={tooglesidebar}
+                        ><CircleUser className="mr-2"/>Profile</NavLink>
+                        <NavLink
+                        to="/izin" 
+                        className={({isActive})=>
+                           `flex items-center p-4 ${isActive?"border-b-3 border-t-3 bg-main-foreground":""}`
+                        }
+                        onClick={tooglesidebar}
+                        ><BedSingle className="mr-2"/>Izin</NavLink>
                     </ul>
                 </div>
             </div>
